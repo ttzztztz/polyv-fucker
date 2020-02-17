@@ -43,6 +43,7 @@ const io = require("socket.io-client");
     }
 
     try {
+      console.log(data);
       const parsed = JSON.parse(data);
       if (parsed.EVENT === "SIGN_IN") {
         console.log(data);
