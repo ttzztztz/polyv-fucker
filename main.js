@@ -43,13 +43,12 @@ const io = require("socket.io-client");
     }
 
     try {
-      console.log(data);
       const parsed = JSON.parse(data);
       if (parsed.EVENT === "SIGN_IN") {
         console.log(data);
         const {
           roomId,
-          data: { message }
+          data: { message, checkinId }
         } = parsed;
         console.log(`收到签到${roomId}, ${message}`);
 
@@ -58,7 +57,7 @@ const io = require("socket.io-client");
           JSON.stringify({
             EVENT: "TO_SIGN_IN",
             roomId: roomId,
-            checkinId: message, // todo: is this a string type?
+            checkinId: checkinId,
             user: { userId: userId, nick: userName }
           })
         );
